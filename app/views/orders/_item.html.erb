@@ -1,0 +1,22 @@
+
+  <tr>
+  <td>
+  <%= image_tag item.image.tiny.url %>
+  </td>
+  <td width=100%>
+    <%= item[:name] %>
+  </td>
+  <td class="text-end">
+  <%= humanized_money_with_symbol item[:price_cents].to_f/100 %>
+  </td>
+  <td class="text-end">
+  <%= item[:quantity] %>
+  </td>
+  <td class="text-end">
+  <%= humanized_money_with_symbol item[:price_cents].to_f*item[:quantity]/100 %>
+  </td>
+  </tr>
+
+
+
+

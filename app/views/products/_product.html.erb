@@ -1,0 +1,38 @@
+
+<% # if/else on this large block of code is a bit inefficient, I realize, but it's quick and easy too :)  %>
+
+<% if product.quantity == 0 %>
+
+<article>
+  <%= link_to product_path(product) do %>
+    <%= image_tag product.image.thumb.url , alt: product.name, class: "soldoutimage" %>
+    <h1>
+      <span><%= product.name %></span>
+      <span><%= humanized_money_with_symbol product.price %></span>
+    </h1>
+  <% end %>
+  <div style="flex-flow: row-reverse;">
+  <div class="soldout btn" >Sold Out</div>
+  </div>
+</article>
+
+<% else %>
+
+<article>
+  <%= link_to product_path(product) do %>
+    <%= image_tag product.image.thumb.url , alt: product.name %>
+    <h1>
+      <span><%= product.name %></span>
+      <span><%= humanized_money_with_symbol product.price %></span>
+    </h1>
+  <% end %>
+  <div>
+      <%= button_to add_item_cart_path(product_id: product.id), class: 'btn',
+      method: :post, disabled: product.quantity == 0 do %>
+        <%= fa_icon "shopping-cart", text: 'Add' %>
+    
+    <% end %>
+  </div>
+</article>
+
+<% end %>
